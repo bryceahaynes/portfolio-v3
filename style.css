@@ -12,6 +12,30 @@
     scroll-behavior: smooth;
 }
 
+/* Scrollbar Styles */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--highlight-text) var(--background-color);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-text);
+    border-radius: 20px;
+    border: 2px solid var(--background-color);
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
 html {
     background-color: var(--background-color);
 }
@@ -24,7 +48,7 @@ html {
     top: 0;
     position: sticky;
     z-index: 1;
-    background-color: #0e0e0ef7;
+    background-color: #0e0e0ef0;
     backdrop-filter: blur(10px);
 }
 
