@@ -154,6 +154,15 @@ i:hover {
     height: 80%;
 }
 
+#projects-container div.active::before,
+#projects-container div.active h2 {
+    opacity: 1;
+}
+
+#projects-container div .github-icon {
+    z-index: 3;
+}
+
 #projects-container div {
     height: 100%;
     position: relative;
@@ -285,7 +294,7 @@ i:hover {
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     #navbar {
-        gap: 1em;
+        gap: 2em;
     }
 
     #hero {

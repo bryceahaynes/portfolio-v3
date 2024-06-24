@@ -39,9 +39,11 @@ startTypewriter();
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('#navbar a');
+    const projectDivs = document.querySelectorAll('#projects-container div');
+    const githubIcons = document.querySelectorAll('.github-icon');
 
     function updateNavigation() {
-        const scrollPosition = window.scrollY + window.innerHeight / 2; // Adjusted to take the middle of the viewport
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
 
@@ -69,6 +71,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    projectDivs.forEach(div => {
+        div.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent the document click event from firing
+            projectDivs.forEach(otherDiv => {
+                if (otherDiv !== div) {
+                    otherDiv.classList.remove('active');
+                }
+            });
+            div.classList.toggle('active');
+        });
+    });
+
+    githubIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent the div's click event from firing
+            window.location.href = icon.parentElement.href;
+        });
+    });
+
+    document.addEventListener('click', () => {
+        projectDivs.forEach(div => {
+            div.classList.remove('active');
+        });
+    });
 
     window.addEventListener('scroll', updateNavigation);
     updateNavigation(); // Call once on load to set initial state
