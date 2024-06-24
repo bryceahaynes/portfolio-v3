@@ -2,6 +2,7 @@
     --background-color: #0e0e0e;
     --highlight-text: #23CE6B;
     --font-white: rgb(240, 240, 240);
+    --navbar-background: #0e0e0ef0;
 }
 
 * {
@@ -10,30 +11,7 @@
     color: var(--font-white);
     font-family: "Roboto Mono", monospace;
     scroll-behavior: smooth;
-}
-
-/* Scrollbar Styles */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--highlight-text) var(--background-color);
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--background-color);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--highlight-text);
-    border-radius: 20px;
-    border: 2px solid var(--background-color);
-}
-
-::-webkit-scrollbar-button {
-    display: none;
+    box-sizing: border-box;
 }
 
 html {
@@ -56,6 +34,15 @@ html {
     text-decoration: none;
     position: relative;
     padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+#navbar a.active {
+    color: var(--highlight-text);
+}
+
+#navbar a.active::after {
+    width: 100%;
 }
 
 #navbar a::after {
@@ -63,10 +50,10 @@ html {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 0;
+    width: var(--underline-width, 0);
     height: 2px;
     background-color: var(--highlight-text);
-    transition: width 0.5s ease-in-out;
+    transition: width 0.3s ease-in-out;
 }
 
 #navbar a:hover::after {
@@ -128,7 +115,6 @@ h1 {
     animation: blink 0.7s infinite step-end;
 }
 
-
 @keyframes blink {
     from, to {
         border-color: transparent;
@@ -157,21 +143,86 @@ i:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 20vh;
+    margin-top: 20vh;
 }
 
 #projects-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1em;
     width: 80%;
     height: 80%;
 }
 
 #projects-container div {
-    background-color: #131313;
     height: 100%;
-    border: solid 1px #23CE6B;
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+    border: 1px solid var(--borderColor);
+}
+
+#projects-container div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 14, 14, 0.844); /* Adjust opacity as needed */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+}
+
+#projects-container div:nth-child(1) { background: url('shrimphony.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(2) { background: url('aquarisoft.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(3) { background: url('wesleysway.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(4) { background: url('brycehaynesold.PNG') center center / cover no-repeat; }
+
+#projects-container div h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+}
+
+#projects-container div:hover::before,
+#projects-container div:hover h2 {
+    opacity: 1;
+}
+
+#projects-container div:hover {
+    transform: scale(0.98);
+    cursor: pointer;
+    animation: pulsate 1s infinite;
+}
+
+.github-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+}
+
+#projects-container div:hover .github-icon {
+    opacity: 1;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 .arrows {
@@ -220,6 +271,17 @@ i:hover {
     -webkit-animation-delay:0s; /* Safari 和 Chrome */
 }
 
+
+#about{
+    margin-top: 30vh;
+    height: 200vh;
+}
+
+#contact{
+    margin-top: 30vh;
+    height: 200vh;
+}
+
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     #navbar {
@@ -248,6 +310,6 @@ i:hover {
     }
 
     #projects-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 }
