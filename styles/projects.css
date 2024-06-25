@@ -1,0 +1,86 @@
+#projects {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+#projects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    width: 80%;
+    height: 80%;
+}
+
+#projects-container div.active::before,
+#projects-container div.active h2 {
+    opacity: 1;
+}
+
+#projects-container div .github-icon {
+    z-index: 3;
+}
+
+#projects-container div {
+    height: 100%;
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+    border: 1px solid var(--borderColor);
+}
+
+#projects-container div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 14, 14, 0.844); /* Adjust opacity as needed */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+}
+
+#projects-container div:nth-child(1) { background: url('/images/shrimphony.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(2) { background: url('/images/aquarisoft.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(3) { background: url('/images/wesleysway.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(4) { background: url('/images/brycehaynesold.PNG') center center / cover no-repeat; }
+
+#projects-container div h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+}
+
+#projects-container div:hover::before,
+#projects-container div:hover h2 {
+    opacity: 1;
+}
+
+#projects-container div:hover {
+    transform: scale(0.98);
+    cursor: pointer;
+    animation: pulsate 1s infinite;
+}
+
+.github-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+}
+
+#projects-container div:hover .github-icon {
+    opacity: 1;
+}

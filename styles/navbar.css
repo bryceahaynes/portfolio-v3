@@ -1,0 +1,45 @@
+#navbar {
+    display: flex;
+    justify-content: center;
+    gap: 6em;
+    padding: 1em;
+    top: 0;
+    position: sticky;
+    z-index: 1;
+    background-color: #0e0e0ef0;
+    backdrop-filter: blur(10px);
+}
+
+#navbar a {
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+#navbar a.active {
+    color: var(--highlight-text);
+}
+
+#navbar a.active::after {
+    width: 100%;
+}
+
+#navbar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: var(--underline-width, 0);
+    height: 2px;
+    background-color: var(--highlight-text);
+    transition: width 0.3s ease-in-out;
+}
+
+#navbar a:hover::after {
+    width: 100%;
+}
+
+#navbar a:hover {
+    color: var(--highlight-text);
+}
