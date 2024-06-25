@@ -14,15 +14,6 @@
     height: 80%;
 }
 
-#projects-container div.active::before,
-#projects-container div.active h2 {
-    opacity: 1;
-}
-
-#projects-container div .github-icon {
-    z-index: 3;
-}
-
 #projects-container div {
     height: 100%;
     position: relative;
@@ -38,31 +29,54 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(14, 14, 14, 0.844); /* Adjust opacity as needed */
+    background: rgba(14, 14, 14, 0.844); /* Base state background */
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
     z-index: 1;
 }
 
-#projects-container div:nth-child(1) { background: url('/images/shrimphony.PNG') center center / cover no-repeat; }
-#projects-container div:nth-child(2) { background: url('/images/aquarisoft.PNG') center center / cover no-repeat; }
-#projects-container div:nth-child(3) { background: url('/images/wesleysway.PNG') center center / cover no-repeat; }
-#projects-container div:nth-child(4) { background: url('/images/brycehaynesold.PNG') center center / cover no-repeat; }
+#projects-container div:nth-child(1) {
+    background: url('/images/shrimphony.PNG') center center / cover no-repeat;
+}
+#projects-container div:nth-child(2) {
+    background: url('/images/aquarisoft.PNG') center center / cover no-repeat;
+}
+#projects-container div:nth-child(3) {
+    background: url('/images/wesleysway.PNG') center center / cover no-repeat;
+}
+#projects-container div:nth-child(4) {
+    background: url('/images/brycehaynesold.PNG') center center / cover no-repeat;
+}
 
-#projects-container div h2 {
+#projects-container div h2, #projects-container div p {
     position: absolute;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 2;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    text-align: center;
+    text-align: left;
 }
 
-#projects-container div:hover::before,
-#projects-container div:hover h2 {
-    opacity: 1;
+#projects-container div h2 {
+    top: 35%; /* Adjusted for visual balance with the paragraph */
+}
+
+#projects-container div p {
+    top: 50%; /* Positioning the paragraph slightly below the h2 */
+    font-size: 0.8em; /* Smaller font size for the paragraph */
+    font-weight: 300;
+    color: var(--font-white); /* Ensuring the text color matches the theme */
+    max-width: 80%; /* Restricting the maximum width for better readability */
+}
+
+#projects-container div:hover::before {
+    opacity: 1; /* Makes the overlay visible */
+    background: rgba(14, 14, 14, 0.9); /* Darkens the background slightly more */
+}
+
+#projects-container div:hover h2, #projects-container div:hover p {
+    opacity: 1; /* Ensuring both elements become visible on hover */
 }
 
 #projects-container div:hover {

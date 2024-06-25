@@ -105,4 +105,8 @@ i:hover {
     #projects-container {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    #projects-container div p {
+        font-size: .5em;
+    }
 }
